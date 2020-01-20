@@ -1,0 +1,25 @@
+{
+    "name": "dawnlang",
+    "displayName": "DawnLang",
+    "description": "Fully integrates Dawn with VSCode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.41.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "dawn",
+            "aliases": ["Dawn", "dawn"],
+            "extensions": [".dawn"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "dawn",
+            "scopeName": "source.dawn",
+            "path": "./syntaxes/dawn.tmLanguage.json"
+        }]
+    }
+}

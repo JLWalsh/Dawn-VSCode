@@ -1,0 +1,14 @@
+These are the regexes that will be used for syntax highlighting
+
+module/val/func name regex: [a-z|A-Z|0-9]*
+
+module shapes: \bmodule\b [a-z|A-Z|0-9]*
+import math: \bimport\b [a-z|A-Z|0-9]*
+val: \bval\b [a-z|A-Z|0-9]*
+val assignement: [a-z|A-Z|0-9]* =
+primitives:
+    numbers: ([0-9]+)(i|f)
+
+strings:
+    begin: doublequote
+    end: doublequote
