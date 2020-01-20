@@ -6,10 +6,117 @@
 			"include": "#keywords"
 		},
 		{
+			"include": "#importexport"
+		},
+		{
 			"include": "#strings"
 		}
 	],
 	"repository": {
+		"import": {
+			"patterns": [{
+				"name": "tbd",
+				"match": "\b(import)\b\\s+([a-z|A-Z|0-9]+)",
+				"captures": {
+					"1": {
+						"name": "tbd"
+					},
+					"2": {
+						"name": "tbd"
+					}
+				}
+			}]
+		},
+		"objectdecl": {
+			"patterns": [{
+				"name": "tbd",
+				"match": "\b(object)\b\\s+([a-z|A-Z|0-9]+)",
+				"captures": {
+					"1": {
+						"name": "tbd"
+					},
+					"2": {
+						"name": "tbd"
+					}
+				}
+			}]
+		},
+		"objectdecl_props": {
+			"patterns": [{
+				"name": "tbd",
+				"match": "([a-z|A-Z|0-9]+):\\s*([a-z|A-Z|0-9]*)",
+				"captures": {
+					"1": {
+						"name": "tbd"
+					},
+					"2": {
+						"name": "tbd"
+					}
+				}
+			}]
+		},
+		"moduledecl": {
+			"patterns": [{
+				"name": "tbd",
+				"match": "\b(module)\b\\s+([a-z|A-Z|0-9]+)",
+				"captures": {
+					"1": {
+						"name": "tbd"
+					},
+					"2": {
+						"name": "tbd"
+					}
+				}
+			}]
+		},
+		"valdecl": {
+			"patterns": [{
+				"name": "keyword.control.dawn",
+				"match": "\b(val)\b\\s+([a-z|A-Z|0-9]+)",
+				"captures": {
+					"1": {
+						"name": "tbd"
+					},
+					"2": {
+						"name": "tbd"
+					}
+				}
+			}]
+		},
+		"function": {
+			"patterns": [{
+				"name": "meta.function.dawn",
+				"match": "([a-z|A-Z|0-9]+\\.*)([a-z|A-Z|0-9]+)\\s*\\((.*)\\):?\\s*([a-z|A-Z|0-9]+)",
+				"captures": {
+					"1": {
+						"name": "entity.name.selector.dawn"
+					},
+					"2": {
+						"name": "entity.name.function.dawn"
+					},
+					"4": {
+						"name": "entity.name.type.dawn"
+					}
+				}
+			}]
+		},
+		"object_instantiation": {
+			"patterns": [{
+				"name": "keyword.control.dawn",
+				"match": "([a-z|A-Z|0-9]+\\.*)([a-z|A-Z|0-9]+)\\s*{(.*)}",
+				"captures": {
+					"1": {
+						"name": "tbd"
+					}
+				}
+			}]
+		},
+		"numeric_primitives": {
+			"patterns": [{
+				"name": "constant.numeric",
+				"match": "([0-9]+)(i|f)"
+			}]
+		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.dawn",
