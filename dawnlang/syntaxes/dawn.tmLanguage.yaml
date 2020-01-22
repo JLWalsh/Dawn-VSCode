@@ -10,10 +10,38 @@ patterns:
 - include: "#module"
 - include: "#object_keyvalue"
 - include: "#object"
+- include: "#val_accessor"
+- include: "#val_declaration"
 
 repository:
+  val_declaration:
+    match: "(val)\\s+(\\w+)\\s*(=)(.*)"
+    name: meta.variable
+    captures:
+      '1':
+        name: keyword.declaration
+      '2':
+        name: variable.other
+      '3':
+        name: keyword.operator.assignment
+      '4':
+        patterns:
+          - include: "#val_assignment"
+    
+  val_assignment:
+    name: meta.assignment
+    patterns:
+      - include: "#primitive"
+      - include: "#expression"
 
-
+  val_accessor:
+    match: "(\\w+)\\.+"
+    name: meta.accessor
+    captures:
+      '1':
+        name: variable.other
+      '2':
+        name: punctuation.accessor
 
   function_declaration:
     match: "(\\w+)\\s*\\((.*)\\)\\s*:\\s*(\\w+)"
@@ -49,7 +77,8 @@ repository:
   invocation_arg:
     patterns:
       - include: "#primitive"
-
+      - include: "#expression"
+  
   primitive:
     patterns:
       - include: "#number"
@@ -97,3 +126,11 @@ repository:
         name: variable.other.member.dawn
       '2':
         name: storage.type.dawn
+  
+  expression:
+    patterns:
+      - include: "#object_instantiation"
+      - include: "#function_invocation"
+      - include: "#val_accessor"
+  
+  object_instantiation:
