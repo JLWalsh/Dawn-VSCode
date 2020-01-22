@@ -17,6 +17,6 @@ primitives:
 
 
 Val rules, to be matched in the following order:
-invocation & func declaration: ([a-z|A-Z|0-9]+\.*)([a-z|A-Z|0-9]+)\s*\((.*)\)
+invocation & func declaration: ([a-z|A-Z|0-9]+\.*)([a-z|A-Z|0-9]+)\s*\((.*)\):?\s*([a-z|A-Z|0-9]+)
 object instantiation: ([a-z|A-Z|0-9]+\.*)([a-z|A-Z|0-9]+)\s*{(.*)}
 val accessor: (([a-z|A-Z|0-9]+)\.)+[a-z|A-Z|0-9]+               // Ex: module.abc.xyz 

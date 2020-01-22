@@ -1,0 +1,99 @@
+"$schema": https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: Dawn
+scopeName: source.dawn
+
+patterns:
+- include: "#function_declaration"
+- include: "#function_invocation"
+- include: "#import"
+- include: "#export"
+- include: "#module"
+- include: "#object_keyvalue"
+- include: "#object"
+
+repository:
+
+
+
+  function_declaration:
+    match: "(\\w+)\\s*\\((.*)\\)\\s*:\\s*(\\w+)"
+    name: meta.function
+    captures:
+      '1':
+        name: entity.name.function.dawn
+      '2':
+        name: meta.function.parameters.dawn
+        patterns:
+          - include: "#function_param"
+      '3':
+        name: storage.type
+  
+  function_param:
+    match: "(\\w+)\\s*:\\s*(\\w+)"
+    captures:
+      '1':
+        name: variable.parameter
+      '2':
+        name: storage.type
+
+  function_invocation:
+    match: "(\\w+)\\s*\\((.*)\\)"
+    name: meta.function-call.dawn
+    captures:
+      '1':
+        name: variable.function.dawn
+      '2':
+        patterns:
+          - include: "#invocation_arg"
+
+  invocation_arg:
+    patterns:
+      - include: "#primitive"
+
+  primitive:
+    patterns:
+      - include: "#number"
+
+  number:
+    match: "[0-9]+(i|f)?" # We allow not placing i or f, as we still want the number to be highlighted
+    name: constant.numeric.dawn
+
+  import:
+    match: "(import)\\s+(\\w+)"
+    name: meta.import.dawn
+    captures:
+      '1':
+        name: keyword.control.import.dawn 
+      '2':
+        name: entity.name.importednamespace.dawn
+
+  export:
+    match: "export"
+    name: keyword.control.export.dawn
+
+  module:
+    match: "(module)\\s+(\\w+)"
+    name: meta.namespace.dawn
+    captures:
+      '1':
+        name: keyword.declaration.namespace.dawn 
+      '2':
+        name: entity.name.namespace.dawn
+
+  object:
+    match: "(object)\\s+(\\w+)"
+    name: meta.struct.dawn
+    captures:
+      '1':
+        name: keyword.declaration.struct.dawn 
+      '2':
+        name: entity.name.struct.dawn
+
+  object_keyvalue:
+    match: "(\\w+)\\s*:\\s*(\\w+)"
+    name: meta.keyvalue.dawn
+    captures:
+      '1':
+        name: variable.other.member.dawn
+      '2':
+        name: storage.type.dawn
