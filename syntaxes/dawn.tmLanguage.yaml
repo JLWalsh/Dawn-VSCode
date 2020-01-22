@@ -86,7 +86,7 @@ repository:
       - include: "#number"
 
   number:
-    match: "[0-9]+(i|f)?" # We allow not placing i or f, as we still want the number to be highlighted
+    match: "[0-9]+(.?)([0-9]+)?(i|f)?" # We allow not placing i or f, as we still want the number to be highlighted
     name: constant.numeric.dawn
 
   import:
