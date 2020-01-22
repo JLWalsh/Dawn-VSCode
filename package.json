@@ -1,6 +1,6 @@
 {
     "name": "dawnlang",
-    "displayName": "DawnLang",
+    "displayName": "Dawn",
     "description": "Fully integrates Dawn with VSCode",
     "version": "0.0.1",
     "scripts": {
@@ -12,6 +12,11 @@
     "categories": [
         "Programming Languages"
     ],
+    "publisher": "DawnLang",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JLWalsh/Dawn-VSCode"
+    },
     "contributes": {
         "languages": [
             {
