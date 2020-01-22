@@ -8,40 +8,42 @@ patterns:
 - include: "#import"
 - include: "#export"
 - include: "#module"
+- include: "#object_instantiation"
 - include: "#object_keyvalue"
 - include: "#object"
 - include: "#val_accessor"
 - include: "#val_declaration"
+- include: "#control_flow"
 
 repository:
   val_declaration:
     match: "(val)\\s+(\\w+)\\s*(=)(.*)"
-    name: meta.variable
+    name: meta.variable.dawn
     captures:
       '1':
-        name: keyword.declaration
+        name: keyword.declaration.dawn
       '2':
-        name: variable.other
+        name: variable.other.dawn
       '3':
-        name: keyword.operator.assignment
+        name: keyword.operator.assignment.dawn
       '4':
         patterns:
           - include: "#val_assignment"
     
   val_assignment:
-    name: meta.assignment
+    name: meta.assignment.dawn
     patterns:
       - include: "#primitive"
       - include: "#expression"
 
   val_accessor:
     match: "(\\w+)\\.+"
-    name: meta.accessor
+    name: meta.accessor.dawn
     captures:
       '1':
-        name: variable.other
+        name: variable.other.dawn
       '2':
-        name: punctuation.accessor
+        name: punctuation.accessor.dawn
 
   function_declaration:
     match: "(\\w+)\\s*\\((.*)\\)\\s*:\\s*(\\w+)"
@@ -54,15 +56,15 @@ repository:
         patterns:
           - include: "#function_param"
       '3':
-        name: storage.type
+        name: storage.type.dawn
   
   function_param:
     match: "(\\w+)\\s*:\\s*(\\w+)"
     captures:
       '1':
-        name: variable.parameter
+        name: variable.parameter.dawn
       '2':
-        name: storage.type
+        name: storage.type.dawn
 
   function_invocation:
     match: "(\\w+)\\s*\\((.*)\\)"
@@ -126,11 +128,49 @@ repository:
         name: variable.other.member.dawn
       '2':
         name: storage.type.dawn
-  
+
   expression:
     patterns:
+      - include: "#val_accessor"
       - include: "#object_instantiation"
       - include: "#function_invocation"
-      - include: "#val_accessor"
-  
+      - include: "#primitive"
+
   object_instantiation:
+    match: "(\\w+)\\s*{(.*)}"
+    captures:
+      '1':
+        name: storage.type
+      '2':
+        patterns:
+          - include: "#object_instantiation_param"
+  
+  object_instantiation_param:
+    match: "(.*)(,?)(.*)"
+    captures:
+      '1':
+        patterns:
+          - include: "#expression"
+          - include: "#keyvalue_instantiation"
+      '2':
+        name: punctuation.separator.dawn
+      '3':
+        patterns:
+          - include: "$self"
+  
+  keyvalue_instantiation:
+    match: "(\\w+)\\s*(:)\\s*(.*)"
+    captures:
+      '1':
+        name: variable.other.member.dawn
+      '2':
+        name: punctuation.other.dawn
+      '3':
+        patterns:
+          - include: "#expression"
+  
+  control_flow:
+    match: "(return|if|else|while|for|do)"
+    captures:
+      '1':
+        name: keyword.control.dawn 
